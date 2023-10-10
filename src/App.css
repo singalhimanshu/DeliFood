@@ -1,38 +1,295 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* common */
+.link {
+  text-decoration: none;
+  color: antiquewhite;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* --------------------common end-------------------- */
+
+/* components */
+.card {
+  width: 300px;
+  height: 300px;
+  background-color: rgb(194, 116, 15);
+  flex-direction: column;
+}
+
+/* --------------------navbar start-------------------- */
+
+.navbar {
+  width: 100%;
+  height: 100px;
+  /* background-color: rgb(255, 225, 0); */
+  display: flex;
+  justify-content: space-between;
+  font-weight: 300;
+}
+
+.nav-icon {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-menu {
+  width: 100%;
+  /* background-color: green; */
+  display: flex;
+  justify-content: space-evenly;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-list {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.nav-item {
+  list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-btn {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+/* --------------------navbar ends-------------------- */
+
+/* --------------------home page header start-------------------- */
+.header-container {
+  width: 100%;
+  height: 75vh;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-header-container {
+  width: 90%;
+  height: 60vh;
+  background-color: yellow;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.header-text {
+  width: 45%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  /* background-color: beige; */
+  padding-left: 3rem;
+  line-height: 1.2;
+}
+
+.header-text h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+
+  /* margin-top: 3rem; */
+}
+
+.header-text p {
+  margin-top: -40px;
+}
+
+.header-text button {
+  width: 200px;
+  padding: 20px 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: brown;
+  border-radius: 35px;
+  color: antiquewhite;
+  /* box-shadow: 10px 10px 10px 0 rgba(233, 234, 174, 0.5); */
+}
+
+.header-img {
+  width: 45%;
+}
+/* --------------------home page header end-------------------- */
+
+/* --------------------home-page-popular-start-------------------- */
+.popular-container {
+  width: 100%;
+  /* background-color: skyblue; */
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.popular-hdr-text {
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+.popular-btn {
+  width: 500px;
+  height: 50px;
+  /* background-color: orange; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.main-btn {
+  padding: 10px 30px;
+  background-color: rgb(254, 254, 254);
+  border-radius: 40px;
+  transition: ease-in-out 0.5s;
+  letter-spacing: 1.5px;
+}
+
+.main-btn:hover {
+  padding: 10px 30px;
+  background-color: bisque;
+  border-radius: 40px;
+}
+
+.card-container {
+  width: 100%;
+  height: 70vh;
+  /* background-color: midnightblue; */
+}
+/* --------------------home-page-popular-end-------------------- */
+
+/* --------------------about page-------------------- */
+
+.about-page {
+  width: 100%;
+  height: 300px;
+}
+.sign-in-page {
+  width: 100%;
+  height: 300px;
+}
+
+.home-page {
+  width: 100%;
+  height: 300px;
+}
+
+/* sign in page */
+.main {
+  width: 100%;
+  height: 70vh;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: antiquewhite;
+}
+/* .footer-container {
+  width: 100%;
+  height: 250px;
+  background: lightpink;
+  bottom: 0;
+} */
+
+.App {
+  text-align: center;
+  background-color: green;
+}
+
+.label {
+  display: block;
+  font-size: small;
+  padding: 5px;
+}
+
+.input {
+  font-size: x-small;
+  border: none;
+  outline: none;
+  background: transparent;
+  border-bottom: solid black 1px;
+  padding: 5px;
+  margin: 2px;
+}
+/* .btn {
   color: white;
+  background-color: red;
+  border-radius: 25px;
+  font-size: larger;
+  display: block;
+  padding: 10px 40px;
+  margin: 10px auto;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 20px;
+} */
+
+.messages {
+  display: flex;
+  justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.error {
+  display: block;
+  background-color: red;
+  color: white;
+  width: fit-content;
+  height: 50px;
+  padding: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.success {
+  display: block;
+  background-color: lightblue;
+  color: black;
+  width: fit-content;
+  height: 50px;
+  padding: 5px;
 }
