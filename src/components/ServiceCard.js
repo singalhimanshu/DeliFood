@@ -3,13 +3,20 @@ import { serviceData } from '../data/serviceData'
 
 const Servicecard = () => {
   return (
-    <div className='service-container'>
-      {/* ServiceCard */}
-      <div className='flex'>
+    <div className='container service-container flex-sa'>
+      <div className='service flex'>
         {serviceData.map((item) => (
-          <p key={item.id} className='card'>
-            {item.title}
-          </p>
+          <div className='service-card flex-se'>
+            <div className='service-img'>
+              <img src={item.img} />
+            </div>
+            <div className='service-title'>
+              <p key={item.id}>{item.title}</p>
+            </div>
+            <div className='service-info'>
+              <p>{item.description}</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
