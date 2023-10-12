@@ -1,0 +1,17 @@
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+/* .input {
+  border: none;
+  outline: none;
+  background: transparent;
+  border-bottom: 2px solid black;
+} */

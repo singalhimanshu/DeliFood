@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Card from '../components/Card'
 import Footer from '../components/Footer'
 import { data } from '../data/data'
+import Servicecard from '../components/ServiceCard'
 
 function Home() {
   const [dish, setDish] = useState('salad')
@@ -28,8 +29,9 @@ function Home() {
               Fresh & <br /> Healthy Food
             </h1>
             <p>
-              At your door step
-              <br /> lorem epsium mfalana food at your convineince price
+              Realx please, we've got you
+              <br />
+              covered every day of the week
             </p>
 
             <button>
@@ -73,6 +75,7 @@ function Home() {
             />
           ))}
       </div>
+      <Servicecard />
       <Footer />
     </div>
   )
