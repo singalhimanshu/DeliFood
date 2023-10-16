@@ -1,31 +1,65 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../shared/Card'
-import { data } from '../../data/data.js'
+// import { data } from '../../data/data.js'
 
 const Popular = () => {
-  const [dish, setDish] = useState('salad')
+  const [query, setQuery] = useState('salad')
+  const [data, setData] = useState([])
+
+  const getFoodCategory = data
+    .map((foodCategory) => foodCategory.category)
+    .reduce((accumulator, foodCategory) => {
+      if (!accumulator.includes(foodCategory)) {
+        accumulator.push(foodCategory)
+      }
+      return accumulator
+    }, [])
+
+  const fetchInfo = async () => {
+    try {
+      return await fetch(`http://localhost:3000/popular`)
+        .then((res) => res.json())
+        .then((d) => setData(Object.values(d)))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchInfo()
+  })
+
   return (
     <div className='container flex-center'>
       <div className='popular-container flex-center'>
-        <h2 className='popular-hdr-text'>Popular {dish} </h2>
+        <h2 className='popular-hdr-text'>Popular {query} </h2>
         <div className='popular-btn flex-se'>
-          <button onClick={() => setDish('salad')} className='main-btn btn '>
+          {getFoodCategory.map((foodCategory) => (
+            <button
+              onClick={() => setQuery(foodCategory)}
+              className='main-btn btn '
+            >
+              {foodCategory}
+            </button>
+          ))}
+
+          {/* <button onClick={() => setQuery('salad')} className='main-btn btn '>
             salad
           </button>
-          <button onClick={() => setDish('burger')} className='btn main-btn'>
+          <button onClick={() => setQuery('burger')} className='btn main-btn'>
             Burger
           </button>
-          <button onClick={() => setDish('pizza')} className='btn main-btn'>
+          <button onClick={() => setQuery('pizza')} className='btn main-btn'>
             Pizza
           </button>
-          <button onClick={() => setDish('pasta')} className='btn main-btn'>
+          <button onClick={() => setQuery('pasta')} className='btn main-btn'>
             Pasta
-          </button>
+          </button> */}
         </div>
 
-        <div className='popular-dish flex-sb'>
+        <div className='popular-query flex-sb'>
           {data
-            .filter((item) => item.category === `${dish}`)
+            .filter((item) => item.category === `${query}`)
             .map((filterdItem) => (
               <Card {...filterdItem} />
             ))}
