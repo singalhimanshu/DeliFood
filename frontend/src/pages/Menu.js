@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../components/shared/Footer'
-// import { data } from '../data/data'
 import Card from '../components/shared/Card'
 import { FaSearch } from 'react-icons/fa'
-// import { get } from 'react-hook-form'
 
 const Menu = () => {
   const [input, setInput] = useState('')
   const [data, setData] = useState([])
-  // const [foodItemCategory, setFoodItemCategory] = useState('')
+  const [category, setCategory] = useState('')
 
   const fetchApiData = async () => {
     try {
@@ -24,15 +22,21 @@ const Menu = () => {
     fetchApiData()
   })
 
-  const getFoodItems =
-    input === ''
-      ? data
-      : data.filter((item) =>
-          item.name
-            .toLowerCase()
-            .trim()
-            .includes(`${input.toLowerCase().trim()}`)
-        )
+  const getFoodItems = (input, category) => {
+    let foodItem = data
+    if (category !== '') {
+      foodItem = foodItem.filter((item) => item.category === `${category}`)
+    }
+
+    if (input !== '') {
+      foodItem = foodItem.filter((item) =>
+        item.name.toLowerCase().trim().includes(`${input.toLowerCase().trim()}`)
+      )
+    }
+
+    return foodItem
+  }
+  const foodItems = getFoodItems(input, category)
 
   const getFoodCategory = data
     .map((foodCategory) => foodCategory.category)
@@ -43,17 +47,6 @@ const Menu = () => {
       return accumulator
     }, [])
 
-  // op : ['pasta', 'pizza', 'burger', 'salad']
-
-  // const setFoodCategory = (category) =>
-  //   data.filter((item) => item.category == category)
-
-  const getCategoryCount = (category) =>
-    data.reduce(
-      (accumulator, val) =>
-        val.category === `${category}` ? accumulator + 1 : accumulator,
-      0
-    )
   return (
     <>
       <div>
@@ -72,30 +65,27 @@ const Menu = () => {
           <div className='popular-btn flex-se'>
             {getFoodCategory.map((foodCategory) => (
               <button
-                onClick={() => setInput(foodCategory)}
+                onClick={() => setCategory(foodCategory)}
                 className='main-btn btn '
               >
-                {foodCategory} ({getCategoryCount(foodCategory)})
+                {foodCategory} (
+                {getFoodItems(input, foodCategory).reduce(
+                  (acc, val) =>
+                    val.category === `${foodCategory}` ? acc + 1 : acc,
+                  0
+                )}
+                )
               </button>
             ))}
 
-            {/* <button onClick={() => setInput('burger')} className='btn main-btn'>
-              Burger
-            </button>
-            <button onClick={() => setInput('pizza')} className='btn main-btn'>
-              Pizza
-            </button>
-            <button onClick={() => setInput('pasta')} className='btn main-btn'>
-              Pasta
-            </button> */}
-            <button onClick={() => setInput('')} className='btn main-btn'>
-              All
+            <button onClick={() => setCategory('')} className='btn main-btn'>
+              All ({getFoodItems(input, '').length})
             </button>
           </div>
         </div>
 
         <div className='menu-container'>
-          {getFoodItems.map((filterItems) => (
+          {foodItems.map((filterItems) => (
             <Card {...filterItems} />
           ))}
         </div>
