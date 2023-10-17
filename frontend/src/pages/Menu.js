@@ -51,7 +51,7 @@ const Menu = () => {
     <>
       <div>
         <div className='search-bar flex-center'>
-          <div className='search-input'>
+          <div className='search-input flex-center'>
             <input
               placeholder='Type your search...'
               value={input}

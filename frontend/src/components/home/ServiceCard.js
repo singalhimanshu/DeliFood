@@ -1,5 +1,6 @@
 import React from 'react'
 import { serviceData } from '../../data/serviceData'
+import '../home/ServiceCard.css'
 
 const Servicecard = () => {
   return (

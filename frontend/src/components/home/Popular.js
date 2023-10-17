@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../shared/Card'
-// import { data } from '../../data/data.js'
-
+import '../home/Popular.css'
 const Popular = () => {
   const [query, setQuery] = useState('salad')
   const [data, setData] = useState([])
@@ -42,22 +41,9 @@ const Popular = () => {
               {foodCategory}
             </button>
           ))}
-
-          {/* <button onClick={() => setQuery('salad')} className='main-btn btn '>
-            salad
-          </button>
-          <button onClick={() => setQuery('burger')} className='btn main-btn'>
-            Burger
-          </button>
-          <button onClick={() => setQuery('pizza')} className='btn main-btn'>
-            Pizza
-          </button>
-          <button onClick={() => setQuery('pasta')} className='btn main-btn'>
-            Pasta
-          </button> */}
         </div>
 
-        <div className='popular-query flex-sb'>
+        <div className='menu-container flex'>
           {data
             .filter((item) => item.category === `${query}`)
             .map((filterdItem) => (
