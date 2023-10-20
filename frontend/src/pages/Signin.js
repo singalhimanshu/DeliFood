@@ -3,15 +3,40 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Footer from '../components/shared/Footer'
 
-const Signin = () => {
+import PropTypes from 'prop-types'
+
+async function loginUser(credentials) {
+  return fetch('http://localhost:8080/signin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json())
+}
+const Signin = ({ token, setToken }) => {
+  // setToken('haha')
+  console.log(`token: ${token}`)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log(email, password)
+    const apiToken = await loginUser({
+      email,
+      password,
+    })
+    console.log('signed in')
+
+    // setToken(apiToken)
+    setToken('fnklasdjfl')
+    console.log(`token: ${token}, apiToken: ${apiToken}`)
   }
 
   return (
@@ -19,12 +44,13 @@ const Signin = () => {
       <div className='container flex-center'>
         <div className='form-container flex-center'>
           <h2>Log In</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit}>
             <div className='form-control-container'>
               <div className='form-control'>
                 <label>Email</label>
                 <input
                   className='input'
+                  onChange={(e) => setEmail(e.target.value)}
                   type='text'
                   name='email'
                   {...register('email', {
@@ -44,6 +70,7 @@ const Signin = () => {
                 <label>Password</label>
                 <input
                   className='input'
+                  onChange={(e) => setPassword(e.target.value)}
                   type='password'
                   name='password'
                   {...register('password', {
@@ -67,6 +94,7 @@ const Signin = () => {
           </form>
           <p>
             Don't have Account
+            {/* <a href='/signup'>Creat One</a> */}
             <Link to={'/signup'}>Create One</Link>
           </p>
         </div>
@@ -77,3 +105,7 @@ const Signin = () => {
 }
 
 export default Signin
+
+Signin.propTypes = {
+  setToken: PropTypes.func.isRequired,
+}

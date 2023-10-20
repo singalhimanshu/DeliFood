@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../components/shared/Footer'
 import Card from '../components/shared/Card'
+import Loader from '../components/shared/Loader'
 import { FaSearch } from 'react-icons/fa'
 
 const Menu = () => {
   const [input, setInput] = useState('')
   const [data, setData] = useState([])
   const [category, setCategory] = useState('')
+  const [loader, setLoader] = useState(true)
 
   const fetchApiData = async () => {
     try {
-      return await fetch('http://localhost:3000/dishes')
+      const menuData = await fetch('http://localhost:3000/dishes')
         .then((res) => res.json())
         .then((data) => setData(Object.values(data)))
+
+      // setLoader(false)
+      return menuData
     } catch (error) {
       console.log(error)
+      // setLoader(false)
+    } finally {
+      setLoader(false)
     }
   }
 
@@ -90,7 +98,7 @@ const Menu = () => {
           ))}
         </div>
       </div>
-
+      {loader && <Loader />}
       <Footer />
     </>
   )
