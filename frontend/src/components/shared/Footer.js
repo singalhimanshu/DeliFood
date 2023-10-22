@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/Footer.css'
+import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 function Footer() {
   const scrollToTop = () => {
     window.scrollTo({
@@ -45,11 +46,19 @@ function Footer() {
         </div>
         <div className='wrapper'>
           <span>Follow us</span>
-          <ul className='footer-list'>
-            <li>instagram</li>
-            <li>twiiter</li>
-            <li>github</li>
-            <li>facebook</li>
+          <ul className='footer-list flex-sb'>
+            <li>
+              <FaFacebook />
+            </li>
+            <li>
+              <FaTwitter />
+            </li>
+            <li>
+              <FaInstagram />
+            </li>
+            <li>
+              <FaGithub />
+            </li>
           </ul>
         </div>
         <div className='wrapper footer-address flex-sb'>
