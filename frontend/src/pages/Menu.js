@@ -12,7 +12,7 @@ const Menu = () => {
 
   const fetchApiData = async () => {
     try {
-      const menuData = await fetch('http://localhost:3000/dishes')
+      const menuData = await fetch('http://localhost:8080/api/dishes')
         .then((res) => res.json())
         .then((data) => setData(Object.values(data)))
 

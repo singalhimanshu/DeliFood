@@ -1,0 +1,17 @@
+.about-container {
+  background-color: orange;
+}
+
+.about-main {
+  /* background-color: rgb(151, 203, 151); */
+  width: 800px;
+  height: 400px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-main p {
+  text-align: center;
+  padding: 2rem;
+  font-weight: 200;
+}

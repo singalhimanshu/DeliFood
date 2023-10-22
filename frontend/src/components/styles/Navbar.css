@@ -4,6 +4,8 @@
   font-weight: var(--font-light);
   background: transparent;
   /* background-color: yellow; */
+  /* background: transparent;
+  position: fixed; */
 }
 
 .nav-icon {

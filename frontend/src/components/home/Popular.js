@@ -16,7 +16,7 @@ const Popular = () => {
 
   const fetchInfo = async () => {
     try {
-      return await fetch(`http://localhost:3000/popular`)
+      return await fetch(`http://localhost:8080/api/dishes/popular`)
         .then((res) => res.json())
         .then((d) => setData(Object.values(d)))
     } catch (error) {

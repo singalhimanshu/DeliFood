@@ -18,7 +18,7 @@ import Signup from './pages/Signup'
 import Cart from './pages/Cart'
 
 function App() {
-  const [token, setToken] = useState()
+  // const [token, setToken] = useState()
 
   return (
     <Router>
@@ -26,19 +26,21 @@ function App() {
       <Routes>
         <Route exact path='/' Component={Home}></Route>
         <Route exact path='/about' Component={About}></Route>
-        <Route
+        <Route exact path='/menu' Component={Menu}></Route>
+        <Route exact path='/signin' Component={Signin}></Route>
+        <Route exact path='/signup' Component={Signup}></Route>
+        {/* <Route
           exact
           path='/signin'
           element={<Signin token={token} setToken={setToken} />}
         ></Route>
-        <Route exact path='/signup' Component={Signup}></Route>
         <Route
           element={
             <PrivateRoute isAuthenticated={!!token} redirectTo='/signin' />
           }
         >
           <Route path='/menu' element={<Menu />} />
-        </Route>
+        </Route> */}
 
         <Route exact path='/contact' Component={Contact}></Route>
         <Route exact path='/cart' Component={Cart}></Route>
@@ -47,8 +49,8 @@ function App() {
   )
 }
 
-function PrivateRoute({ isAuthenticated, redirectTo }) {
-  return isAuthenticated ? <Outlet /> : <Navigate to={redirectTo} />
-}
+// function PrivateRoute({ isAuthenticated, redirectTo }) {
+//   return isAuthenticated ? <Outlet /> : <Navigate to={redirectTo} />
+// }
 
 export default App

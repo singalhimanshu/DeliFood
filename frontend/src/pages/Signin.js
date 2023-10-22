@@ -5,18 +5,18 @@ import Footer from '../components/shared/Footer'
 
 import PropTypes from 'prop-types'
 
-async function loginUser(credentials) {
-  return fetch('http://localhost:8080/signin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json())
-}
-const Signin = ({ token, setToken }) => {
+// async function loginUser(credentials) {
+//   return fetch('http://localhost:8080/signin', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(credentials),
+//   }).then((data) => data.json())
+// }
+const Signin = () => {
   // setToken('haha')
-  console.log(`token: ${token}`)
+  // console.log(`token: ${token}`)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -26,18 +26,18 @@ const Signin = ({ token, setToken }) => {
   } = useForm()
 
   const handleSubmit = async (e) => {
+    console.log('signed in')
     e.preventDefault()
     console.log(email, password)
-    const apiToken = await loginUser({
-      email,
-      password,
-    })
-    console.log('signed in')
-
-    // setToken(apiToken)
-    setToken('fnklasdjfl')
-    console.log(`token: ${token}, apiToken: ${apiToken}`)
   }
+
+  //   const apiToken = await loginUser({
+  //     email,
+  //     password,
+  //   // setToken(apiToken)
+  //   setToken('fnklasdjfl')
+  //   console.log(`token: ${token}, apiToken: ${apiToken}`)
+  // }
 
   return (
     <>
@@ -106,6 +106,6 @@ const Signin = ({ token, setToken }) => {
 
 export default Signin
 
-Signin.propTypes = {
-  setToken: PropTypes.func.isRequired,
-}
+// Signin.propTypes = {
+//   setToken: PropTypes.func.isRequired,
+// }

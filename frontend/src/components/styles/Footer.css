@@ -17,7 +17,7 @@
 
 .wrapper {
   height: 100%;
-  width: 200px;
+  width: 150px;
 }
 
 .footer-main {
@@ -38,6 +38,7 @@
 }
 
 .footer-list {
+  /* background-color: pink; */
   list-style: none;
   font-weight: var(--font-lighter);
   font-size: 0.8rem;

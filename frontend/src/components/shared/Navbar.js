@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from './Button'
 import '../styles/Navbar.css'
+import { FaCartPlus } from 'react-icons/fa'
 
 const Navbar = () => {
   const handleClick = () => {
@@ -21,7 +22,9 @@ const Navbar = () => {
 
         <div className='nav-btn flex btn'>
           <Button onClick={handleClick} children={'signin'} />
-          <Button onClick={handleClick} children={'cart'} />
+          <button className='btn btn-primary' onClick={handleClick}>
+            Cart <FaCartPlus />
+          </button>
         </div>
       </div>
     </div>
