@@ -4,7 +4,9 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 var { expressjwt: ejwt } = require('express-jwt')
-
+const url =
+  'mongodb+srv://deeptichauhanofficial:y@RQTPpZyWJ6@6h@cluster0.vzm4idi.mongodb.net/?retryWrites=true&w=majority'
+const localURL = 'mongodb://127.0.0.1:27017/fooddelivery'
 const app = express()
 const port = process.env.PORT || 8080
 
@@ -12,7 +14,7 @@ const product = require('./routes/productRouter')
 const dish = require('./routes/dishRouter')
 const service = require('./routes/serviceRouter')
 
-mongoose.connect('mongodb://127.0.0.1:27017/fooddelivery')
+mongoose.connect(url)
 
 var db = mongoose.connection
 
