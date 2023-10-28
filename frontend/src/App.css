@@ -198,6 +198,57 @@
 
 .btn-primary {
   width: 100px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px;
   background-color: salmon;
+}
+/*-----------------cart----------------------*/
+.cart-container {
+  flex-direction: column;
+}
+
+.cart-container p {
+  width: 400px;
+  letter-spacing: 1px;
+  background-color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+.cartItem-container {
+  width: 500px;
+  margin: 5px;
+  padding: 30px;
+  /* height: 0px; */
+  background-color: white;
+  /* color: whitesmoke; */
+  border-radius: 25px;
+  /* border: 1px solid grey; */
+}
+
+.amount-box {
+  height: 100px;
+  flex-direction: column;
+}
+
+/*--------------------checkout-----------------------*/
+.checkout-container {
+  width: 500px;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.checkout-btn {
+  margin-top: 20px;
+  padding: 10px;
+  transition: ease-in 0.2s;
+}
+
+.cancel-btn:hover {
+  background-color: rgb(211, 68, 68);
+  color: aliceblue;
+}
+.order-btn:hover {
+  background-color: rgb(120, 224, 128);
+  /* color: aliceblue; */
 }

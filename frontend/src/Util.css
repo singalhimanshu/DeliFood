@@ -42,9 +42,10 @@
 }
 
 .container {
-  /* background-color: pink; */
+  background-color: rgb(219, 219, 225);
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
+  max-height: auto;
 }
 
 a {

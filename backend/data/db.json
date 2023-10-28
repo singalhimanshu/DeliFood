@@ -29,7 +29,7 @@
     },
     {
       "id": 15,
-      "name": "Double Patty",
+      "name": "Double Patty Burger",
       "img": "../img/burger-3.png",
       "category": "burger",
       "price": 11,
@@ -47,7 +47,7 @@
     },
     {
       "id": 14,
-      "name": "Junior Devil",
+      "name": "Junior Devil Burger",
       "img": "../img/burger-2.png",
       "category": "burger",
       "price": 10.99,

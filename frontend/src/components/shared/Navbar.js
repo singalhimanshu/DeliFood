@@ -1,7 +1,9 @@
 import React from 'react'
 import Button from './Button'
 import '../styles/Navbar.css'
-import { FaCartPlus } from 'react-icons/fa'
+import { FaCartPlus, FaSignInAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import CartButton from '../navbar.js/CartButton'
 
 const Navbar = () => {
   const handleClick = () => {
@@ -14,17 +16,28 @@ const Navbar = () => {
       </div>
       <div className='nav-menu flex-se'>
         <div className='nav-list flex-se'>
-          <a href='/'>Home</a>
-          <a href='/about'>About Us</a>
-          <a href='/menu'>Menu</a>
-          <a href='/contact'>Contact</a>
+          <Link to='/'>Home</Link>
+          <Link to='/about'>About Us</Link>
+          <Link to='/menu'>Menu</Link>
+          <Link to='/contact'>Contact</Link>
         </div>
 
         <div className='nav-btn flex btn'>
-          <Button onClick={handleClick} children={'signin'} />
-          <button className='btn btn-primary' onClick={handleClick}>
-            Cart <FaCartPlus />
-          </button>
+          <Button
+            onClick={handleClick}
+            redirectTo={'signin'}
+            name='sign in'
+            icon={<FaSignInAlt />}
+          />
+          {/* <Button
+            className='btn btn-primary'
+            onClick={handleClick}
+            redirectTo={'cart'}
+            name='cart'
+            icon={<FaCartPlus />}
+          /> */}
+
+          <CartButton />
         </div>
       </div>
     </div>

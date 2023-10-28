@@ -16,36 +16,27 @@ import Menu from './pages/Menu'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
 
 function App() {
   // const [token, setToken] = useState()
 
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route exact path='/' Component={Home}></Route>
-        <Route exact path='/about' Component={About}></Route>
-        <Route exact path='/menu' Component={Menu}></Route>
-        <Route exact path='/signin' Component={Signin}></Route>
-        <Route exact path='/signup' Component={Signup}></Route>
-        {/* <Route
-          exact
-          path='/signin'
-          element={<Signin token={token} setToken={setToken} />}
-        ></Route>
-        <Route
-          element={
-            <PrivateRoute isAuthenticated={!!token} redirectTo='/signin' />
-          }
-        >
-          <Route path='/menu' element={<Menu />} />
-        </Route> */}
-
-        <Route exact path='/contact' Component={Contact}></Route>
-        <Route exact path='/cart' Component={Cart}></Route>
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path='/' Component={Home}></Route>
+          <Route exact path='/about' Component={About}></Route>
+          <Route exact path='/menu' Component={Menu}></Route>
+          <Route exact path='/contact' Component={Contact}></Route>
+          <Route exact path='/signin' Component={Signin}></Route>
+          <Route exact path='/signup' Component={Signup}></Route>
+          <Route exact path='/cart' Component={Cart}></Route>
+          <Route exact path='/cart/checkout' Component={Checkout}></Route>
+        </Routes>
+      </Router>
+    </>
   )
 }
 

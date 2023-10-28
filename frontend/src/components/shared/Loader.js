@@ -1,6 +1,16 @@
 import React from 'react'
 import '../styles/Loader.scss'
 
+export const Backdrop = (props) => {
+  const handleClick = () => {
+    if (props.onClose) {
+      props.onClose()
+    }
+  }
+
+  return <div onClick={handleClick} className='loader-overlay'></div>
+}
+
 const Loader = () => {
   return (
     <>
