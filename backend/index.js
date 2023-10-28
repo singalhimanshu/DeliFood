@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 var { expressjwt: ejwt } = require('express-jwt')
 const url =
-  'mongodb+srv://deeptichauhanofficial:y@RQTPpZyWJ6@6h@cluster0.vzm4idi.mongodb.net/?retryWrites=true&w=majority'
+  'mongodb+srv://deeptichauhanofficial:fHmPLFA6xNiSN15A@cluster0.vzm4idi.mongodb.net/Cluster0?retryWrites=true&w=majority'
 const localURL = 'mongodb://127.0.0.1:27017/fooddelivery'
 const app = express()
 const port = process.env.PORT || 8080
@@ -14,16 +14,25 @@ const product = require('./routes/productRouter')
 const dish = require('./routes/dishRouter')
 const service = require('./routes/serviceRouter')
 
-mongoose.connect(url)
+// mongoose.connect(url)
 
-var db = mongoose.connection
+mongoose
+  .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB Atlas')
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB Atlas:', error)
+  })
 
-db.on('connected', () => {
-  console.log('mongodb connected...')
-})
-db.on('error', () => {
-  console.log('mongodb connection failed...')
-})
+// var db = mongoose.connection
+
+// db.on('connected', () => {
+//   console.log('mongodb connected...')
+// })
+// db.on('error', () => {
+//   console.log('mongodb connection failed...')
+// })
 
 app.use(express.json())
 app.use(cors())
