@@ -42,7 +42,7 @@
 }
 
 .container {
-  background-color: rgb(219, 219, 225);
+  /* background-color: rgb(219, 219, 225); */
   width: 100%;
   min-height: 90vh;
   max-height: auto;
