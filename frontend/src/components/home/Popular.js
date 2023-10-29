@@ -14,9 +14,14 @@ const Popular = () => {
       return accumulator
     }, [])
 
+   const localAPI = 'http://localhost:8080/api/dishes/popular'
+   const API = "https://deli-food.vercel.app/api/dishes/popular" 
+
   const fetchInfo = async () => {
     try {
-      return await fetch(`http://localhost:8080/api/dishes/popular`)
+      return await fetch(API, {
+        method: 'GET',
+      })
         .then((res) => res.json())
         .then((d) => setData(Object.values(d)))
     } catch (error) {

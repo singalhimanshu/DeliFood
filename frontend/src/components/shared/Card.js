@@ -1,14 +1,10 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import '../styles/Card.css'
-
-import CartContext from '../../store/CartContext'
-// import { useGlobalCartContext } from '../../store/CartProvider'
+import { useGlobalCartContext } from '../../store/CartProvider'
 
 export const Card = (props) => {
-  // const { addItem } = useGlobalCartContext()
 
-  const cartContext = useContext(CartContext)
+  const cartContext = useGlobalCartContext()
   const price = `${props.price.toFixed(2)}`
 
   const addItemtoCart = () => {

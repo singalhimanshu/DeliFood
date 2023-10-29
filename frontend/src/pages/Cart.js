@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FaCartPlus } from 'react-icons/fa'
-// import { useGlobalCartContext } from '../store/CartProvider'
 import CartContext from '../store/CartContext'
 import CartItem from '../components/cart/CartItem'
-import OrderButton from '../components/cart/OrderButton'
 import Checkout from './Checkout'
 import { useNavigate } from 'react-router-dom'
 import Modal from '../components/shared/Modal'
@@ -11,15 +8,13 @@ import Footer from '../components/shared/Footer'
 
 const Cart = (props) => {
   const cartContext = useContext(CartContext)
-  const [isEmpty, setIsEmpty] = useState(true)
-  const [showModal, setShowModal] = useState(false)
   const navigate = useNavigate()
 
+  const [isEmpty, setIsEmpty] = useState(true)
+  const [showModal, setShowModal] = useState(false)
   const [isCheckout, setIsCheckout] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [didSubmit, setDidSubmit] = useState(false)
-  const hasItems = cartContext.items.length > 0
 
+  const hasItems = cartContext.items.length > 0
   const cartItems = cartContext.items
 
   const checkIsEmpty = () => {
@@ -42,7 +37,6 @@ const Cart = (props) => {
   }
 
   const submitOrderHandler = async (userData) => {
-    setIsSubmitting(true)
     await fetch('http://localhost:8080/api/orders', {
       method: 'POST',
       headers: {
@@ -53,8 +47,6 @@ const Cart = (props) => {
         ordereditems: cartContext.items,
       }),
     })
-    setIsSubmitting(false)
-    setDidSubmit(true)
     setShowModal(true)
     cartContext.clearCart()
   }
@@ -69,7 +61,6 @@ const Cart = (props) => {
   }
 
   const orderStatus = <p>order placed successfully!!</p>
-  // console.log(cartItems)
   return (
     <div>
       <div className='cart-container container flex-center'>

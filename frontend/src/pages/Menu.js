@@ -10,17 +10,17 @@ const Menu = () => {
   const [category, setCategory] = useState('')
   const [loader, setLoader] = useState(true)
 
+  const localAPI = 'http://localhost:8080/api/dishes'
+  const API = "https://deli-food.vercel.app/api/dishes"
+
   const fetchApiData = async () => {
     try {
-      const menuData = await fetch('http://localhost:8080/api/dishes')
+      const menuData = await fetch(API)
         .then((res) => res.json())
         .then((data) => setData(Object.values(data)))
-
-      // setLoader(false)
       return menuData
     } catch (error) {
       console.log(error)
-      // setLoader(false)
     } finally {
       setLoader(false)
     }

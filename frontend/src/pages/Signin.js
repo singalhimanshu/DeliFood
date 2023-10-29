@@ -5,18 +5,7 @@ import Footer from '../components/shared/Footer'
 
 import PropTypes from 'prop-types'
 
-// async function loginUser(credentials) {
-//   return fetch('http://localhost:8080/signin', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(credentials),
-//   }).then((data) => data.json())
-// }
 const Signin = () => {
-  // setToken('haha')
-  // console.log(`token: ${token}`)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -30,14 +19,6 @@ const Signin = () => {
     e.preventDefault()
     console.log(email, password)
   }
-
-  //   const apiToken = await loginUser({
-  //     email,
-  //     password,
-  //   // setToken(apiToken)
-  //   setToken('fnklasdjfl')
-  //   console.log(`token: ${token}, apiToken: ${apiToken}`)
-  // }
 
   return (
     <>
@@ -94,7 +75,6 @@ const Signin = () => {
           </form>
           <p>
             Don't have Account
-            {/* <a href='/signup'>Creat One</a> */}
             <Link to={'/signup'}>Create One</Link>
           </p>
         </div>
@@ -105,7 +85,3 @@ const Signin = () => {
 }
 
 export default Signin
-
-// Signin.propTypes = {
-//   setToken: PropTypes.func.isRequired,
-// }

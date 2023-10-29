@@ -1,9 +1,9 @@
 import React from 'react'
 import Button from './Button'
 import '../styles/Navbar.css'
-import { FaCartPlus, FaSignInAlt } from 'react-icons/fa'
+import { FaSignInAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import CartButton from '../navbar.js/CartButton'
+import CartButton from '../cart/CartButton'
 
 const Navbar = () => {
   const handleClick = () => {
@@ -29,13 +29,6 @@ const Navbar = () => {
             name='sign in'
             icon={<FaSignInAlt />}
           />
-          {/* <Button
-            className='btn btn-primary'
-            onClick={handleClick}
-            redirectTo={'cart'}
-            name='cart'
-            icon={<FaCartPlus />}
-          /> */}
 
           <CartButton />
         </div>

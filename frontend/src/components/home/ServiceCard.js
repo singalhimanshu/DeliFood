@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-// import { serviceData } from '../../data/serviceData'
 import '../home/ServiceCard.css'
 
 const Servicecard = () => {
   const [data, setData] = useState([])
 
+  const localURL = 'http://localhost:8080/api/services'
+  const url = "https://deli-food.vercel.app/api/services"
+
   const fetchInfo = async () => {
     try {
-      return await fetch('http://localhost:8080/api/services', {
+      return await fetch(url, {
         method: 'GET',
       })
         .then((res) => res.json())

@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/Footer.css'
+import { Link } from 'react-router-dom'
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 function Footer() {
   const scrollToTop = () => {
@@ -22,18 +23,18 @@ function Footer() {
       <div className='flex footer'>
         <div className='wrapper footer-main'>
           <span>Company</span>
-          <a href='/' onClick={scrollToTop}>
+          <Link to='/' onClick={scrollToTop}>
             Home
-          </a>
-          <a href='/about' onClick={scrollToTop}>
+          </Link>
+          <Link to='/about' onClick={scrollToTop}>
             About Us
-          </a>
-          <a href='/menu' onClick={scrollToTop}>
+          </Link>
+          <Link to='/menu' onClick={scrollToTop}>
             Menu
-          </a>
-          <a href='/contact' onClick={scrollToTop}>
+          </Link>
+          <Link to='/contact' onClick={scrollToTop}>
             Contact
-          </a>
+          </Link>
         </div>
         <div className='wrapper '>
           <span>Services</span>

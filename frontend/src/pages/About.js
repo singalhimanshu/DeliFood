@@ -8,7 +8,6 @@ const About = () => {
   return (
     <div>
       <AboutHeader />
-
       <AboutMain />
       <AboutImages />
       <div className='container'>

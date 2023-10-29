@@ -1,12 +1,9 @@
 import React, { useState, useRef } from 'react'
 import { useGlobalCartContext } from '../store/CartProvider'
-import { useNavigate } from 'react-router-dom'
 
 const Checkout = (props) => {
   const cartContext = useGlobalCartContext()
   const cartCheckoutAmount = cartContext.totalAmount.toFixed(2)
-
-  const navigate = useNavigate()
 
   const isEmpty = (value) => value.trim().length === ''
   const isSixChars = (value) => value.trim().length === 6
@@ -60,13 +57,7 @@ const Checkout = (props) => {
     if (!formIsValid) {
       return
     }
-    // setOrderData({
-    //   name: enteredName,
-    //   address: enteredAddress,
-    //   State: enteredState,
-    //   city: enteredCity,
-    //   postal: enteredPostal,
-    // })
+   
 
     props.onConfirm({
       name: enteredName,
