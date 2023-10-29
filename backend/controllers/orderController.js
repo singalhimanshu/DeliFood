@@ -10,8 +10,6 @@ const Order = mongoose.model('Order', orderSchema)
 const createOrder = async (req, res) => {
   try {
     const { user, ordereditems } = req.body
-    console.log(user)
-    console.log(ordereditems)
     const newOrder = new Order({ user, ordereditems })
     await newOrder.save()
     console.log(`order request: ${JSON.stringify(req.body)}`)

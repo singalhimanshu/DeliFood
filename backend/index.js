@@ -1,52 +1,31 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+
 var { expressjwt: ejwt } = require('express-jwt')
-const url =
-  'mongodb+srv://deeptichauhanofficial:fHmPLFA6xNiSN15A@cluster0.vzm4idi.mongodb.net/Cluster0?retryWrites=true&w=majority'
 const localURL = 'mongodb://127.0.0.1:27017/fooddelivery'
 const app = express()
 const port = process.env.PORT || 8080
+const jwtSecretKey = 'my_secret_key'
+const url =
+  'mongodb+srv://deeptichauhanofficial:fHmPLFA6xNiSN15A@cluster0.vzm4idi.mongodb.net/Cluster0?retryWrites=true&w=majority'
 
 const product = require('./routes/productRouter')
 const dish = require('./routes/dishRouter')
 const service = require('./routes/serviceRouter')
 
-// mongoose.connect(url)
-
 mongoose
-  .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to MongoDB Atlas')
+    console.log('Connected to MongoDB')
   })
   .catch((error) => {
-    console.error('Error connecting to MongoDB Atlas:', error)
+    console.error('Error connecting to MongoDB:', error)
   })
-
-// var db = mongoose.connection
-
-// db.on('connected', () => {
-//   console.log('mongodb connected...')
-// })
-// db.on('error', () => {
-//   console.log('mongodb connection failed...')
-// })
 
 app.use(express.json())
 app.use(cors())
 
-// app.use('/signin', (req, res) => {
-//   res.send({
-//     token: 'test123',
-//   })
-// })
-
-// sample api
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
 
 /*
   METHOD : GET
@@ -62,40 +41,14 @@ app.use('/api', product)
 app.use('/api', dish)
 app.use('/api', service)
 
-// app.get('/products', (req, res) => {
-//   res.send(data)
-// })
-const userSchema = new mongoose.Schema({
-  username: String,
-  email: String,
-  password: String,
-})
-
-const User = mongoose.model('User', userSchema)
-const jwtSecretKey = 'my_secret_key'
-
-app.post('/api/register', async (req, res) => {
-  try {
-    const { username, email, password } = req.body
-    if (!username || !email || !password) {
-      return res.status(400).json({ error: 'All fields are required!!' })
-    }
-
-    const hashPassword = await bcrypt.hash(password, 10)
-    const newUser = new User({ username, email, password: hashPassword })
-    await newUser.save()
-
-    const token = jwt.sign(
-      { username: newUser.username, email: newUser.email },
-      jwtSecretKey
-    )
-
-    res.status(201).json({ message: 'User Registered successfully !!', token })
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ error: 'Internal Server Error!!' })
-  }
-})
+/*
+  METHOD : POST
+  -----------------------------------------
+  registerUser           -  /api/register
+  placeOrder             -  /api/orders
+  loginUser              -  /api/login
+  -----------------------------------------
+*/
 
 // JWT authentication middleware
 app.use(
