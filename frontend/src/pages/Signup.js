@@ -25,7 +25,7 @@ const Signup = () => {
   }
 
   const registerUser = async (currentUser) => {
-  
+
     try {
       const response = await fetch('http://localhost:8080/api/user/register', {
         method: 'POST',

@@ -3,7 +3,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 
 var { expressjwt: ejwt } = require('express-jwt')
-const localURL = 'mongodb://127.0.0.1:27017/fooddelivery'
+const localURL = 'mongodb://127.0.0.1:27017/local'
 const app = express()
 const port = process.env.PORT || 8080
 const jwtSecretKey = 'my_secret_key'
