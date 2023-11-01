@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const UserModel = mongoose.model('users', {
-  username: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { true: String, required: true },
+  username: String,
+  email: String,
+  password: String,
 })
 
 module.exports = UserModel

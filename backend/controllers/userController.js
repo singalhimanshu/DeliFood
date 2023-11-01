@@ -1,44 +1,49 @@
-const { default: mongoose } = require('mongoose')
+// const { default: mongoose } = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-
-const userSchema = new mongoose.Schema({
-  username: String,
-  email: String,
-  password: String,
-})
-
-const User = mongoose.model('User', userSchema)
+const UserModel = require('../models/user')
 const jwtSecretKey = 'my_secret_key'
 
-const loginUser = async (req, res) => {
-  res.send('user has login successfully!!')
-}
 
-const resgisterUser = async (req, res) => {
+
+const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body
+
     if (!username || !email || !password) {
       return res.status(400).json({ error: 'All fields are required!!' })
     }
 
-    const hashPassword = await bcrypt.hash(password, 10)
-    const newUser = new User({ username, email, password: hashPassword })
-    await newUser.save()
+    const user = await UserModel.findOne({ email: email })
 
-    const token = jwt.sign(
-      { username: newUser.username, email: newUser.email },
-      jwtSecretKey
-    )
+    if (!user) {
+      const salt = await bcrypt.genSalt(10)
+      const hashPassword = await bcrypt.hash(password, salt)
+      const newUser = new UserModel({
+        username: username,
+        email: email,
+        password: hashPassword,
+      })
 
-    res.status(201).json({ message: 'User Registered successfully !!', token })
+      const userCreated = await newUser.save()
+
+      const token = jwt.sign({ userId: userCreated._id }, jwtSecretKey)
+      res.status(200).json({ user: newUser, token: token })
+    } else {
+      return res.status(400).send('user already exist')
+    }
   } catch (error) {
     console.log(error)
     res.status(500).json({ error: 'Internal Server Error!!' })
   }
 }
 
+const loginUser = async (req, res) => {
+  
+  res.send('user has login successfully!!')
+}
+
 module.exports = {
   loginUser,
-  resgisterUser,
+  registerUser,
 }

@@ -13,9 +13,10 @@ const url =
 const product = require('./routes/productRouter')
 const dish = require('./routes/dishRouter')
 const service = require('./routes/serviceRouter')
+const user = require('./routes/userRouter')
 
 mongoose
-.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(localURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB')
   })
@@ -25,7 +26,6 @@ mongoose
 
 app.use(express.json())
 app.use(cors())
-
 
 /*
   METHOD : GET
@@ -40,27 +40,28 @@ app.use(cors())
 app.use('/api', product)
 app.use('/api', dish)
 app.use('/api', service)
+app.use('/api/user', user)
 
 /*
   METHOD : POST
   -----------------------------------------
-  registerUser           -  /api/register
+  registerUser           -  /api/user/register
   placeOrder             -  /api/orders
-  loginUser              -  /api/login
+  loginUser              -  /api/user/login
   -----------------------------------------
 */
 
 // JWT authentication middleware
-app.use(
-  ejwt({ secret: jwtSecretKey, algorithms: ['HS256'] }).unless({
-    path: [
-      '/api/register',
-      '/api/orders',
-      // Exempt the login route from JWT authentication
-      // Add more exempted routes if needed
-    ],
-  })
-)
+// app.use(
+//   ejwt({ secret: jwtSecretKey, algorithms: ['HS256'] }).unless({
+//     path: [
+//       '/api/register',
+//       '/api/orders',
+//       // Exempt the login route from JWT authentication
+//       // Add more exempted routes if needed
+//     ],
+//   })
+// )
 
 app.use('/api/orders', require('./routes/orderRouter'))
 
