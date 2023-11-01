@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken')
 const UserModel = require('../models/user')
 const jwtSecretKey = 'my_secret_key'
 
-
-
 const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body
@@ -39,8 +37,24 @@ const registerUser = async (req, res) => {
 }
 
 const loginUser = async (req, res) => {
-  
-  res.send('user has login successfully!!')
+  const { email, password } = req.body
+  const user = await UserModel.findOne({ email: email })
+
+  if (!user) {
+    return res.status(400).send({message : "user not found !!"})
+  }
+
+  const isPasswordMatching = await bcrypt.compare(password, user.password)
+
+  if (isPasswordMatching) {
+    const token = jwt.sign({ userId: user._id }, jwtSecretKey)
+    return res.status(200).json({
+      user: user,
+      token: token,
+    })
+  }
+
+  return res.status(401).send('Incorrect login credentials')
 }
 
 module.exports = {
