@@ -1,24 +1,68 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Footer from '../components/shared/Footer'
 
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+}
+
 const Signup = () => {
+  const [userData, setUserData] = useState(initialState)
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const addUserToLocalStorage = ({ user, token }) => {
+    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('token', token)
   }
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [username, setUsername] = useState('')
+  const registerUser = async (currentUser) => {
+  
+    try {
+      const response = await fetch('http://localhost:8080/api/user/register', {
+        method: 'POST',
+        body: JSON.stringify(currentUser),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+      const { user, token } = await response.json()
+      addUserToLocalStorage({ user, token })
+      console.log(user, token)
+      if (user) {
+        navigate('/signin')
+        window.location.reload()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  const resetInput = () => {}
+  const onHandleChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+  }
+
+  const onSubmit = (e) => {
+    // e.preventDefault()
+    const { username, email, password } = userData
+    // console.log(`username : ${userData.username}`)
+    console.log(username)
+    const currentUser = { username, email, password }
+
+    registerUser(currentUser)
+  }
+
+  const resetInput = (e) => {
+    setUserData({ ...userData, [e.target.name]: '' })
+  }
 
   return (
     <>
@@ -36,6 +80,8 @@ const Signup = () => {
                   {...register('username', {
                     required: 'username is Required!!!',
                   })}
+                  value={userData.name}
+                  onChange={onHandleChange}
                 />
                 <p className='error'>
                   {errors.username && <p>{errors.username.message}</p>}
@@ -54,6 +100,8 @@ const Signup = () => {
                       message: 'Email is not valid',
                     },
                   })}
+                  value={userData.email}
+                  onChange={onHandleChange}
                 />
                 <p className='error'>
                   {errors.email && (
@@ -74,6 +122,7 @@ const Signup = () => {
                       message: 'Password should be at-least 6 characters.',
                     },
                   })}
+                  onChange={onHandleChange}
                 />
                 <p className='error'>
                   {errors.password && (

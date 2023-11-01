@@ -18,17 +18,23 @@ const CartItem = (props) => {
     cartContext.removeItem(props.id)
   }
   return (
-    <div className='flex-center'>
+    <div className='cart-item-wrapper flex-center'>
       {/* add image  */}
-      <div className='cartItem-container flex-sb '>
-        <div className='cartItem-details'>
-          <div>{`Item : ${props.name}`}</div>
-          <div>{`price $${props.price} `}</div>
-        </div>
-        <div className='flex-center'>
-          <button onClick={decreaseItemQuantity}> - </button>
-          {props.quantity}
+      <div className='cart-item-container flex-sb '>
+        <div className='cart-item-counter flex'>
           <button onClick={increaseItemQuantity}> + </button>
+          {props.quantity}
+          <button onClick={decreaseItemQuantity}> - </button>
+        </div>
+        <div className='cart-item-image flex-center'>
+          <img src={props.image} />
+        </div>
+        <div className='cart-item-details'>
+          <div>{props.name}</div>
+          <div> ${props.price}</div>
+        </div>
+        <div className='cart-item-close-btn'>
+          <button type='close'>X</button>
         </div>
       </div>
     </div>

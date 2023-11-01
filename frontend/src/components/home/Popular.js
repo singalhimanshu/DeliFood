@@ -42,6 +42,7 @@ const Popular = () => {
             <button
               onClick={() => setQuery(foodCategory)}
               className='main-btn btn '
+              
             >
               {foodCategory}
             </button>
@@ -52,7 +53,7 @@ const Popular = () => {
           {data
             .filter((item) => item.category === `${query}`)
             .map((filterdItem) => (
-              <Card {...filterdItem} />
+              <Card {...filterdItem}/>
             ))}
         </div>
       </div>

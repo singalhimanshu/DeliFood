@@ -27,7 +27,7 @@ const Servicecard = () => {
     <div className='container service-container flex-sa'>
       <div className='service flex'>
         {data.map((item) => (
-          <div className='service-card flex-se'>
+          <div className='service-card flex-se' key={item.id}>
             <div className='service-img'>
               <img src={item.img} />
             </div>

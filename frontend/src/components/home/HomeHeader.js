@@ -12,7 +12,7 @@ const HomeHeader = () => {
               Fresh & <br /> Healthy Food
             </h1>
             <p>
-              Realx please, we've got you
+              Relax please, we've got you
               <br />
               covered every day of the week
             </p>

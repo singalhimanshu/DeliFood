@@ -12,7 +12,9 @@ const Navbar = () => {
   return (
     <div className='navbar flex-sb'>
       <div className='nav-icon flex-center'>
-        <h2>DeliFooD</h2>
+        <h2>
+          <Link to='/'>DeliFooD</Link>
+        </h2>
       </div>
       <div className='nav-menu flex-se'>
         <div className='nav-list flex-se'>

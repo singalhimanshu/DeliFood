@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Footer from '../components/shared/Footer'
 
-import PropTypes from 'prop-types'
 
 const Signin = () => {
   const [email, setEmail] = useState('')
