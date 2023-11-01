@@ -1,22 +1,63 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Footer from '../components/shared/Footer'
 
+const initialState = {
+  email: '',
+  password: '',
+}
 
 const Signin = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [userData, setUserData] = useState(initialState)
+  const [error, setError] = useState('')
+
+  const navigate = useNavigate()
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm()
 
-  const handleSubmit = async (e) => {
+  const onHandleChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+  }
+
+  const addUserToLocalStorage = ({ user, token }) => {
+    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('token', token)
+  }
+  const onSubmit = async (e) => {
     console.log('signed in')
     e.preventDefault()
-    console.log(email, password)
+    const { email, password } = userData
+    console.log(userData)
+    console.log('logging in >>>')
+
+    const currentUser = { email, password }
+    console.log(currentUser)
+
+    loginUser(currentUser)
+  }
+
+  const loginUser = async (currentUser) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/user/login`, {
+        method: 'POST',
+        body: JSON.stringify(currentUser),
+        headers: { 'Content-type': 'application/json' },
+      })
+      const { user, token } = response.json()
+      addUserToLocalStorage({ user, token })
+      if (user) {
+        navigate('/')
+        // location.reload();
+      }
+    } catch (e) {
+      setError(e.response.json())
+      console.log(error)
+    }
   }
 
   return (
@@ -24,15 +65,16 @@ const Signin = () => {
       <div className='container flex-center'>
         <div className='form-container flex-center'>
           <h2>Log In</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className='form-control-container'>
               <div className='form-control'>
                 <label>Email</label>
                 <input
                   className='input'
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={onHandleChange}
                   type='text'
                   name='email'
+                  value = {userData.email}
                   {...register('email', {
                     required: 'Email is required',
                     pattern: {
@@ -50,7 +92,7 @@ const Signin = () => {
                 <label>Password</label>
                 <input
                   className='input'
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={onHandleChange}
                   type='password'
                   name='password'
                   {...register('password', {
